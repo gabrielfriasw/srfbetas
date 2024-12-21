@@ -1,0 +1,22 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[plugins]]
+  package = "@netlify/plugin-functions-core"
+
+# Enable WebSocket support
+[[redirects]]
+  from = "/.netlify/functions/websocket"
+  to = "/.netlify/functions/websocket"
+  status = 200
+  force = true
+  [redirects.headers]
+    Connection = "upgrade"
+    Upgrade = "websocket"
